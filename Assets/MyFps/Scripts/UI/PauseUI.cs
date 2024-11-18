@@ -1,5 +1,6 @@
 using UnityEngine;
 using StarterAssets;
+using UnityEngine.InputSystem;
 
 namespace MyFps
 {
@@ -11,22 +12,21 @@ namespace MyFps
         public SceneFader fader;
         [SerializeField] private string loadToScene = "MainMenu";
 
-        private GameObject thePlayer;
+        public GameObject thePlayer;
         #endregion
 
         private void Start()
         {
-            //참조
-            thePlayer = GameObject.Find("Player");
+
         }
 
         private void Update()
         {
-            /*//
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Toggle();
-            }*/
+            // 새로운 Input System 방식
+            //if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            //{
+            //    Toggle();
+            //}
         }
 
         public void Toggle()
@@ -35,7 +35,7 @@ namespace MyFps
 
             if (pauseUI.activeSelf) //pause 창이 오픈 될때, 사운드? && !isSequence
             {
-                thePlayer.GetComponent<FirstPersonController>().enabled = false;
+                //thePlayer.GetComponent<FirstPersonController>().enabled = false;
                 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -44,7 +44,7 @@ namespace MyFps
             }
             else //pause 창이 클로즈 될때
             {
-                thePlayer.GetComponent<FirstPersonController>().enabled = true;
+                //thePlayer.GetComponent<FirstPersonController>().enabled = true;
 
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;

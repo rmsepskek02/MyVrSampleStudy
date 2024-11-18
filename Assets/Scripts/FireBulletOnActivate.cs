@@ -1,3 +1,4 @@
+using MyFps;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -23,9 +24,13 @@ namespace MyVrSample
 
         void Fire(ActivateEventArgs args)
         {
-            GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bulletGo.GetComponent<Rigidbody>().linearVelocity = firePoint.forward * bulletSpeed;
-            Destroy(bulletGo, 5f);
+            if (PlayerStats.Instance.UseAmmo(1))
+            {
+                GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                bulletGo.GetComponent<Rigidbody>().linearVelocity = firePoint.forward * bulletSpeed;
+
+                Destroy(bulletGo, 5f);
+            }
         }
     }
 }
