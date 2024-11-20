@@ -6,7 +6,7 @@ namespace MyFps
     //인터렉티브 액션을 구현하는 클래스
     public abstract class Interactive : MonoBehaviour
     {
-        public abstract void DoAction();
+        protected abstract void DoAction();
 
         #region Variables
         private float theDistance;
@@ -28,12 +28,9 @@ namespace MyFps
 
         private void OnMouseOver()
         {
-            Debug.Log("Test" + unInteractive);
             //거리가 2이하 일때
             if (theDistance <= 2f && !unInteractive)
             {
-                Debug.Log("Test2" + gameObject.name);
-                Debug.Log("Test3" + unInteractive);
                 ShowActionUI();
 
                 /*if (Input.GetButtonDown("Action"))
